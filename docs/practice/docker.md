@@ -16,7 +16,7 @@ Let's setup a local environment with the following components :
 
 ## Docker, a simple way to setup your local environment
 
-You can deploy any application using a very short commands :
+You can deploy any application using a very short command... with docker !
 
 ### Deploy a database
 ```bash
