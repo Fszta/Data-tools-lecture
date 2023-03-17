@@ -11,7 +11,7 @@ What are some common applications of data science?
 Data science is used in a wide range of industries and fields, including business, healthcare, finance, marketing, and scientific research. Some common applications of data science include fraud detection, customer segmentation, predicting disease outbreaks, personalized recommendations, and image and speech recognition.
 
 What are data science tools?
-Data science tools are software applications, libraries, and frameworks that are used to facilitate the various tasks involved in data science, such as data manipulation, data analysis, machine learning, and data visualization. Some common data science tools include Python, R, Jupyter Notebook, pandas, NumPy, Matplotlib, scikit-learn, and TensorFlow.
+Data science tools are software applications, libraries, and frameworks that are used to facilitate the various tasks involved in data science, such as data manipulation, data analysis, machine learning, and data visualization.
 
 
 
@@ -36,12 +36,38 @@ Data science tools are software applications, libraries, and frameworks that are
        
 ```
 
-
 ## Session 2
-This session will be oriented around basic data visualization libraries & framework.
 
 ``` mermaid
     %%{init: { 'logLevel': 'debug', 'theme': 'base', 'gitGraph': {'showBranches': true, 'showCommitLabel':true,'mainBranchName': 'session2'}} }%%
+
+    gitGraph
+       commit id: "1"
+       branch docker
+       checkout docker
+       commit id: "postgres"
+       commit id: "pgadmin"
+       commit id: "metabase"
+       checkout session2
+       merge docker
+       commit id: "2"
+       branch docker-compose
+       checkout docker-compose
+       commit id: "all at once"
+       checkout session2
+       merge docker-compose
+       
+ 
+       
+```
+
+
+
+## Session 3
+This session will be oriented around basic data visualization libraries & framework.
+
+``` mermaid
+    %%{init: { 'logLevel': 'debug', 'theme': 'base', 'gitGraph': {'showBranches': true, 'showCommitLabel':true,'mainBranchName': 'session3'}} }%%
 
     gitGraph
        commit id: "Data viz libraries"
@@ -49,24 +75,15 @@ This session will be oriented around basic data visualization libraries & framew
        checkout libraries
        commit id: "matplotlib"
        commit id: "seaborn"
-       checkout session2
+       checkout session3
        merge libraries
        commit id: "Data viz framework"
        branch framework
        checkout framework
        commit id: "plotly dash"
-       checkout session2
+       checkout session3
        merge framework
        
  
        
 ```
-
-
-## Session 3 
-* Docker
-  * Setup a BI Platform with postgres & metabase based on docker
-* Advance technical documentation
-
-## Session 4
-* Practice
