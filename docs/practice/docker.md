@@ -114,7 +114,7 @@ There are many BI platforms, however only few are open-source. In addition, meta
 with docker.
 <br>
 ```bash
-docker run -d -p 3000:3000 --name metabase metabase/metabase:0.45
+docker run -d -p 3000:3000 --name metabase metabase/metabase
 ```
 <br>
 If you perform a docker ps you'll see 3 containers : 
