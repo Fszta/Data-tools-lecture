@@ -7,16 +7,25 @@
 * zoom on github
 
 ## Commands recap
-* `git init` Initialize a git repository
-* `git add <file_name>` add a file to staging area
-* `git commit -m "an explicit message"` 
-* `git push origin <branch_name>` 
-* `git branch <branch_name>` create a new branch
-* `git checkout <branch_name>` switch to branch `<branch_name>`
-* `git checkout -b <branch_name>` create and switch to new branch `<branch_name>`
+!!! tip
+
+    You don't need to remind all the commands, just practice and go through the documentation or man page !
+
+| Command | Description |
+|---------|-------------|
+| `git init` | Initialize a git repository |
+| `git add <file_name>` | Add a file to staging area |
+| `git commit -m "an explicit message"` | Commit changes with an explicit message |
+| `git push origin <branch_name>` | Push changes to a remote branch |
+| `git branch <branch_name>` | Create a new branch |
+| `git checkout <branch_name>` | Switch to a branch |
+| `git checkout -b <branch_name>` | Create and switch to a new branch |
+
 
 ## Branch & coding workflow
-> **Reminder**: Don't code on master branch
+!!! danger
+
+    Reminder: Don't code on master branch
 
 ### The minimal workflow, can be used when coding alone
 
