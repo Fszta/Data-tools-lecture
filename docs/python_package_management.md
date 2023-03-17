@@ -2,6 +2,11 @@
 
 Pip, Anaconda, and Poetry are all package managers for Python, but they have different features and use cases.
 
+!!! info
+
+    For local development, you can choose between pip & conda depending on your preferences. 
+    In a company, you'll use the one used by the other developers
+
 ## Pip
 Pip is the default package manager for Python and is used to install and manage Python packages from the Python Package Index (PyPI). Pip is included with Python, and you can use it to install packages globally or in a virtual environment. Pip is simple to use and is suitable for most Python projects.
 
@@ -17,9 +22,11 @@ In summary, if you're working on a simple Python project, pip should suffice. If
 ## Commands recap
 
 ### Virtual environment creation
-> You must use virtual env to manage your python projects, basically it will allow you : 
-> * to prevent version conflicts
-> * to create reproducible and easy to install project
+!!! warning
+
+    * You must use virtual env to manage your python projects, basically it will allow you : 
+    * to prevent version conflicts
+    * to create reproducible and easy to install project
 
 There are many way to create virtual env depending on your setup, one you can use : `python3 -m venv env_name`
 
