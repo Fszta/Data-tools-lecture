@@ -679,7 +679,12 @@ title: Basic feature branch workflow
 <p>By creating small commits, it helps everyone in a team to understand what have been done.
 Also, it's easier to revert a small change in case of bug.</p>
 <h3 id="share-only-what-is-necessary-add-gitignore-to-you-repository">Share only what is necessary, add .gitignore to you repository</h3>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
 <p><code>.gitignore</code> list all the files and folder that must not be tracked</p>
+</div>
+<div class="admonition example">
+<p class="admonition-title">Example</p>
 <h4 id="ginignore-simple-example"><code>.ginignore</code> simple example :</h4>
 <div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>__pycache__/
 </span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>venv/
@@ -688,12 +693,14 @@ Also, it's easier to revert a small change in case of bug.</p>
 </span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>log.txt
 </span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>any_file_you_want_to_exclude.any_extension
 </span></code></pre></div>
+</div>
 <h3 id="commit-often-branch-frequently">Commit often &amp; branch frequently</h3>
 <p>Prefer short-term branch, this will improve the traceability and highly simplify the code review process.
 Try to not include large number of change in the same branch, and avoid unrelated changes.</p>
-<blockquote>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
 <p>It's better to commit something un-perfect than nothing  </p>
-</blockquote>
+</div>
 <h3 id="write-detailed-commit-message-but-short">Write detailed commit message (but short !)</h3>
 <p>When reading a commit message, anyone should be able to understand what have been done.
 In general, try to explain what changed from previous code and why.</p>
