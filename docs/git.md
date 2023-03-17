@@ -86,24 +86,29 @@ Also, it's easier to revert a small change in case of bug.
 
 
 ### Share only what is necessary, add .gitignore to you repository
-`.gitignore` list all the files and folder that must not be tracked
+!!! info
+    
+    `.gitignore` list all the files and folder that must not be tracked
 
-#### `.ginignore` simple example : 
-
-```
-__pycache__/
-venv/
-data/
-download/
-log.txt
-any_file_you_want_to_exclude.any_extension
-```
+!!! example
+    #### `.ginignore` simple example : 
+    
+    ```
+    __pycache__/
+    venv/
+    data/
+    download/
+    log.txt
+    any_file_you_want_to_exclude.any_extension
+    ```
 
 ### Commit often & branch frequently
 Prefer short-term branch, this will improve the traceability and highly simplify the code review process.
 Try to not include large number of change in the same branch, and avoid unrelated changes.
 
-> It's better to commit something un-perfect than nothing  
+!!! tip
+    
+    It's better to commit something un-perfect than nothing  
 
 ### Write detailed commit message (but short !)
 When reading a commit message, anyone should be able to understand what have been done.
