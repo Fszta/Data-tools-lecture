@@ -1,9 +1,11 @@
 ## Docker in practice
 
 Let's setup a local environment with the following components : 
+
 * A database : postgresql
+* An database administration platform : pgadmin
 * A Business intelligence app : metabase
-* An ETL tool : Airbyte
+
 
 !!! danger
 
