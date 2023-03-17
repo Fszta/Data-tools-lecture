@@ -20,11 +20,11 @@ You can deploy any application using a very short command... with docker !
 
 ### Deploy a database
 ```bash
-docker run -d 
-    --name postgres 
-    -p 5432:5432
-    -e POSTGRES_PASSWORD=password
-    -v postgres:/var/lib/postgresql/data 
+docker run -d \
+    --name postgres \ 
+    -p 5432:5432 \
+    -e POSTGRES_PASSWORD=password \
+    -v postgres:/var/lib/postgresql/data \ 
     postgres:15.2
 ```
 
