@@ -1,0 +1,851 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../../python_package_management/">
+      
+      
+        <link rel="next" href="../docker/">
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-9.1.3">
+    
+    
+      
+        <title>Airflow in practice - Introduction to data science tools</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.c4a75a56.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.a0c5b2b5.min.css">
+      
+      
+
+    
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var key of Object.keys(palette.color))document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#airflow-in-practice" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Introduction to data science tools" class="md-header__button md-logo" aria-label="Introduction to data science tools" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Introduction to data science tools
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Airflow in practice
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      <form class="md-header__option" data-md-component="palette">
+        
+          
+          <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+          
+            <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_2" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12c0-2.42-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69Z"/></svg>
+            </label>
+          
+        
+          
+          <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_2">
+          
+            <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69Z"/></svg>
+            </label>
+          
+        
+      </form>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Introduction to data science tools" class="md-nav__button md-logo" aria-label="Introduction to data science tools" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    Introduction to data science tools
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        Introduction
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../airflow/" class="md-nav__link">
+        Airflow
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../docker/" class="md-nav__link">
+        Docker
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../git/" class="md-nav__link">
+        Git
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../python_package_management/" class="md-nav__link">
+        Python package management
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" checked>
+      
+      
+      
+        <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+          Practice
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="true">
+        <label class="md-nav__title" for="__nav_6">
+          <span class="md-nav__icon md-icon"></span>
+          Practice
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Airflow in practice
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Airflow in practice
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#installation" class="md-nav__link">
+    Installation
+  </a>
+  
+    <nav class="md-nav" aria-label="Installation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#create-an-admin-user-to-connect-to-the-ui" class="md-nav__link">
+    Create an admin user to connect to the ui
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#set-dags-folder" class="md-nav__link">
+    Set dags folder
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#test-to-access-the-ui" class="md-nav__link">
+    Test to access the UI
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exercice" class="md-nav__link">
+    Exercice
+  </a>
+  
+    <nav class="md-nav" aria-label="Exercice">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#your-first-dag" class="md-nav__link">
+    Your first dag
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#a-real-dag" class="md-nav__link">
+    A real dag
+  </a>
+  
+    <nav class="md-nav" aria-label="A real dag">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-data-acquisition-task" class="md-nav__link">
+    1 - Data acquisition task
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-transform-the-data" class="md-nav__link">
+    2 - Transform the data
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-store-the-data" class="md-nav__link">
+    3 - Store the data
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-aggregate-the-data" class="md-nav__link">
+    4 - Aggregate the data
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-plug-metabase-on-your-database" class="md-nav__link">
+    5 - Plug metabase on your database
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bonus" class="md-nav__link">
+    Bonus
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../docker/" class="md-nav__link">
+        Docker
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#installation" class="md-nav__link">
+    Installation
+  </a>
+  
+    <nav class="md-nav" aria-label="Installation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#create-an-admin-user-to-connect-to-the-ui" class="md-nav__link">
+    Create an admin user to connect to the ui
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#set-dags-folder" class="md-nav__link">
+    Set dags folder
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#test-to-access-the-ui" class="md-nav__link">
+    Test to access the UI
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exercice" class="md-nav__link">
+    Exercice
+  </a>
+  
+    <nav class="md-nav" aria-label="Exercice">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#your-first-dag" class="md-nav__link">
+    Your first dag
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#a-real-dag" class="md-nav__link">
+    A real dag
+  </a>
+  
+    <nav class="md-nav" aria-label="A real dag">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-data-acquisition-task" class="md-nav__link">
+    1 - Data acquisition task
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-transform-the-data" class="md-nav__link">
+    2 - Transform the data
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-store-the-data" class="md-nav__link">
+    3 - Store the data
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-aggregate-the-data" class="md-nav__link">
+    4 - Aggregate the data
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-plug-metabase-on-your-database" class="md-nav__link">
+    5 - Plug metabase on your database
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bonus" class="md-nav__link">
+    Bonus
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+<h1 id="airflow-in-practice">Airflow in practice</h1>
+<h2 id="installation">Installation</h2>
+<p>We've seen many way of deploying airflow, for practice, the most straightforward way is
+to install it via pip and run it in standalone mode.</p>
+<p>Here a quick tutorial on how to install &amp; run it : <a href="https://airflow.apache.org/docs/apache-airflow/stable/start.html">airflow documentation</a></p>
+<h3 id="create-an-admin-user-to-connect-to-the-ui">Create an admin user to connect to the ui</h3>
+<p>If you not run all the commands separately, you'll probably need to create a user to connect to the UI</p>
+<div class="language-shell highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>airflow<span class="w"> </span>users<span class="w"> </span>create<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">          </span>--username<span class="w"> </span>antoine<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="w">          </span>--firstname<span class="w"> </span>admin<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="w">          </span>--lastname<span class="w"> </span>admin<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="w">          </span>--role<span class="w"> </span>Admin<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="w">          </span>--password<span class="w"> </span>admin<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="w">          </span>--email<span class="w"> </span>admin@example.org
+</span></code></pre></div>
+<h3 id="set-dags-folder">Set dags folder</h3>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>This is not mandatory, but you can modify the default path of the dag folder to a more convenient place.
+This is the folder from where airflow will grab the dags you've developed</p>
+</div>
+<p>In <code>airflow.cfg</code> file, update <code>dags_folder</code> path to the folder you want on your machine.
+By default, it's set to your HOME directory.</p>
+<h2 id="test-to-access-the-ui">Test to access the UI</h2>
+<p>By default airflow run on <a href="localhost:8080">localhost:8080</a>. Normally you should have some examples dags that come with
+the installation if you haven't updated the config file.</p>
+<h2 id="exercice">Exercice</h2>
+<p>The aim of the exercise is to create a more realistic dag to retrieve some data from an API,
+perform some transformation, and store it in a database.</p>
+<p>Requirements :
+For this exercise, you'll need : </p>
+<ul>
+<li>airflow</li>
+<li>a database : postgres (feel free to try another)</li>
+<li>metabase</li>
+</ul>
+<h3 id="your-first-dag">Your first dag</h3>
+<p>Create a hello world dag that run every minute and just print <code>hello world</code>, just to ensure that all is working 
+as expected.</p>
+<h3 id="a-real-dag">A real dag</h3>
+<p>For this exercise, we will use the <a href="https://velib-metropole-opendata.smoove.pro/opendata/Velib_Metropole/station_status.json">velib API</a>,</p>
+<p>Your dag must include (at least the following task):</p>
+<ul>
+<li>A task to retrieve the data from the API</li>
+<li>A task to quickly transform the data (process the data to make it fit the target system)</li>
+<li>A task to store the result in your a table of your database</li>
+<li>A task to run some aggregation on the table previously feeded with new data.</li>
+</ul>
+<h4 id="1-data-acquisition-task">1 - Data acquisition task</h4>
+<p>Use the following endpoint : https://velib-metropole-opendata.smoove.pro/opendata/Velib_Metropole/station_status.json
+to extract the last updated data from the velib api.</p>
+<h4 id="2-transform-the-data">2 - Transform the data</h4>
+<p>In this task, you need the json data to be in a flattened format. For each station we want to have the following 
+information : </p>
+<ul>
+<li>station_id</li>
+<li>number_of_available_docks</li>
+<li>number_of_electric_bike</li>
+<li>number_of_mechanical_bike</li>
+<li>the timestamp at which data has been updated on the server side</li>
+</ul>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>You can use the method of your choice, you can do it using pure python, or using some libraries</p>
+</div>
+<h4 id="3-store-the-data">3 - Store the data</h4>
+<div class="language-text highlight"><pre><span></span><code>!!! warning
+
+Before developing the task, you&#39;ll need to create a connection to your postgres database
+</code></pre></div>
+<p>Create a task that takes the previously transform data an insert in a table called <code>velib_station_status</code>.
+You can manage the table creation from your dag (using <code>CREATE TABLE IF NOT EXISTS</code>, (before the insert statement),
+or do it using the pg cli.</p>
+<p>Here is the expected schema of the table : </p>
+<table>
+<thead>
+<tr>
+<th>Column Name</th>
+<th>Description</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>id</td>
+<td>ID of the record - primary key</td>
+<td>INT</td>
+</tr>
+<tr>
+<td>station_id</td>
+<td>ID of the station</td>
+<td>INT</td>
+</tr>
+<tr>
+<td>number_of_available_docks</td>
+<td>Number of available docks at the station</td>
+<td>INT</td>
+</tr>
+<tr>
+<td>number_of_electric_bike</td>
+<td>Number of available electric bikes at the station</td>
+<td>INT</td>
+</tr>
+<tr>
+<td>number_of_mechanical_bike</td>
+<td>Number of available mechanical bikes at the station</td>
+<td>INT</td>
+</tr>
+<tr>
+<td>timestamp_data_updated_on_server</td>
+<td>Timestamp at which data has been updated on the server side</td>
+<td>TIMESTAMP</td>
+</tr>
+</tbody>
+</table>
+<p>Here is an example form the <a href="https://airflow.apache.org/docs/apache-airflow-providers-postgres/stable/operators/postgres_operator_howto_guide.html">airflow documentation</a></p>
+<h4 id="4-aggregate-the-data">4 - Aggregate the data</h4>
+<p>Create a last task which execute a postgres request to count : </p>
+<ul>
+<li>the total number of free docks</li>
+<li>the total number of available mechanical bike</li>
+<li>the total number of available electric bike</li>
+</ul>
+<p>The result must be store in another table : <code>stations_aggregates</code> with the following columns : 
+Here is the expected schema of the table :</p>
+<table>
+<thead>
+<tr>
+<th>Column Name</th>
+<th>Description</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>id</td>
+<td>ID of the record - Primary key</td>
+<td>INT</td>
+</tr>
+<tr>
+<td>number_free_docks</td>
+<td>Number of free docks at the station</td>
+<td>INT</td>
+</tr>
+<tr>
+<td>number_available_e_bikes</td>
+<td>Number of available electric bikes at the station</td>
+<td>INT</td>
+</tr>
+<tr>
+<td>number_available_mechanical_bikes</td>
+<td>Number of available mechanical bikes at the station</td>
+<td>INT</td>
+</tr>
+<tr>
+<td>created_at</td>
+<td>Timestamp of the computation</td>
+<td>TIMESTAMP</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+</div>
+<h4 id="5-plug-metabase-on-your-database">5 - Plug metabase on your database</h4>
+<h4 id="bonus">Bonus</h4>
+<p>Create a slack integration and add an on_failure callback to send an alert when your dag fail</p>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["content.code.copy"], "search": "../../assets/javascripts/workers/search.208ed371.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.efa0ade1.min.js"></script>
+      
+    
+  </body>
+</html>

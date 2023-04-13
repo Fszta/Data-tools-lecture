@@ -1,0 +1,1203 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="..">
+      
+      
+        <link rel="next" href="../docker/">
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-9.1.3">
+    
+    
+      
+        <title>Airflow - Introduction to data science tools</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.c4a75a56.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.a0c5b2b5.min.css">
+      
+      
+
+    
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var key of Object.keys(palette.color))document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#airflow" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="Introduction to data science tools" class="md-header__button md-logo" aria-label="Introduction to data science tools" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Introduction to data science tools
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Airflow
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      <form class="md-header__option" data-md-component="palette">
+        
+          
+          <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+          
+            <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_2" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12c0-2.42-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69Z"/></svg>
+            </label>
+          
+        
+          
+          <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_2">
+          
+            <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69Z"/></svg>
+            </label>
+          
+        
+      </form>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Introduction to data science tools" class="md-nav__button md-logo" aria-label="Introduction to data science tools" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    Introduction to data science tools
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        Introduction
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Airflow
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Airflow
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#whats-a-dag" class="md-nav__link">
+    What's a dag ?
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#why-do-i-need-such-a-tool" class="md-nav__link">
+    Why do I need such a tool ?
+  </a>
+  
+    <nav class="md-nav" aria-label="Why do I need such a tool ?">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#recap-data-integration-pattern" class="md-nav__link">
+    Recap : Data integration pattern
+  </a>
+  
+    <nav class="md-nav" aria-label="Recap : Data integration pattern">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#etl" class="md-nav__link">
+    ETL
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#elt" class="md-nav__link">
+    ELT
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-does-it-work" class="md-nav__link">
+    How does it work ?!
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-to-deploy-airflow" class="md-nav__link">
+    How to deploy airflow ?
+  </a>
+  
+    <nav class="md-nav" aria-label="How to deploy airflow ?">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#deploy-airflow-locally" class="md-nav__link">
+    Deploy airflow locally
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#using-a-cloud-managed-service" class="md-nav__link">
+    Using a cloud managed service
+  </a>
+  
+    <nav class="md-nav" aria-label="Using a cloud managed service">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#on-aws" class="md-nav__link">
+    On AWS
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#on-gcp" class="md-nav__link">
+    On GCP
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#deploy-airflow-on-kubernetes-on-premise-or-in-a-cloud-environment" class="md-nav__link">
+    Deploy airflow on kubernetes (on-premise or in a cloud environment)
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-to-create-a-dag" class="md-nav__link">
+    How to create a dag
+  </a>
+  
+    <nav class="md-nav" aria-label="How to create a dag">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#airflow-operators" class="md-nav__link">
+    Airflow operators
+  </a>
+  
+    <nav class="md-nav" aria-label="Airflow operators">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#example-a-first-minimal-dag" class="md-nav__link">
+    Example - A first minimal dag
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#example" class="md-nav__link">
+    Example
+  </a>
+  
+    <nav class="md-nav" aria-label="Example">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#successful-dag-execution" class="md-nav__link">
+    Successful dag execution
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#failing-dag-execution" class="md-nav__link">
+    Failing dag execution
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#some-interesting-features" class="md-nav__link">
+    Some interesting features
+  </a>
+  
+    <nav class="md-nav" aria-label="Some interesting features">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#callback" class="md-nav__link">
+    Callback
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#connections" class="md-nav__link">
+    Connections
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#hooks" class="md-nav__link">
+    Hooks
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cron-format-reminder" class="md-nav__link">
+    Cron format reminder
+  </a>
+  
+    <nav class="md-nav" aria-label="Cron format reminder">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#example_1" class="md-nav__link">
+    Example
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../docker/" class="md-nav__link">
+        Docker
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../git/" class="md-nav__link">
+        Git
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python_package_management/" class="md-nav__link">
+        Python package management
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+      
+      
+      
+        <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+          Practice
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_6">
+          <span class="md-nav__icon md-icon"></span>
+          Practice
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../practice/airflow/" class="md-nav__link">
+        Airflow in practice
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../practice/docker/" class="md-nav__link">
+        Docker
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#whats-a-dag" class="md-nav__link">
+    What's a dag ?
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#why-do-i-need-such-a-tool" class="md-nav__link">
+    Why do I need such a tool ?
+  </a>
+  
+    <nav class="md-nav" aria-label="Why do I need such a tool ?">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#recap-data-integration-pattern" class="md-nav__link">
+    Recap : Data integration pattern
+  </a>
+  
+    <nav class="md-nav" aria-label="Recap : Data integration pattern">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#etl" class="md-nav__link">
+    ETL
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#elt" class="md-nav__link">
+    ELT
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-does-it-work" class="md-nav__link">
+    How does it work ?!
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-to-deploy-airflow" class="md-nav__link">
+    How to deploy airflow ?
+  </a>
+  
+    <nav class="md-nav" aria-label="How to deploy airflow ?">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#deploy-airflow-locally" class="md-nav__link">
+    Deploy airflow locally
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#using-a-cloud-managed-service" class="md-nav__link">
+    Using a cloud managed service
+  </a>
+  
+    <nav class="md-nav" aria-label="Using a cloud managed service">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#on-aws" class="md-nav__link">
+    On AWS
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#on-gcp" class="md-nav__link">
+    On GCP
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#deploy-airflow-on-kubernetes-on-premise-or-in-a-cloud-environment" class="md-nav__link">
+    Deploy airflow on kubernetes (on-premise or in a cloud environment)
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-to-create-a-dag" class="md-nav__link">
+    How to create a dag
+  </a>
+  
+    <nav class="md-nav" aria-label="How to create a dag">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#airflow-operators" class="md-nav__link">
+    Airflow operators
+  </a>
+  
+    <nav class="md-nav" aria-label="Airflow operators">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#example-a-first-minimal-dag" class="md-nav__link">
+    Example - A first minimal dag
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#example" class="md-nav__link">
+    Example
+  </a>
+  
+    <nav class="md-nav" aria-label="Example">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#successful-dag-execution" class="md-nav__link">
+    Successful dag execution
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#failing-dag-execution" class="md-nav__link">
+    Failing dag execution
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#some-interesting-features" class="md-nav__link">
+    Some interesting features
+  </a>
+  
+    <nav class="md-nav" aria-label="Some interesting features">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#callback" class="md-nav__link">
+    Callback
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#connections" class="md-nav__link">
+    Connections
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#hooks" class="md-nav__link">
+    Hooks
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cron-format-reminder" class="md-nav__link">
+    Cron format reminder
+  </a>
+  
+    <nav class="md-nav" aria-label="Cron format reminder">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#example_1" class="md-nav__link">
+    Example
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+<h1 id="airflow">Airflow</h1>
+<p>Airflow is an <strong>open-source</strong> platform initially develop by Airbnb to schedule, and orchestrate 
+of complex data workflows. It is primarily used in the field of data engineering and data processing to manage the 
+movement and transformation of data between systems and processes.</p>
+<p>At its core, Airflow provides a workflow automation framework that allows users to define, execute, 
+and monitor data pipelines as directed acyclic graphs (DAGs).</p>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p>You can also use some alternative tool, even if airflow is used in many companies, some of them chose to use 
+similar tool : </p>
+<ul>
+<li>Prefect</li>
+<li>Luigi</li>
+<li>Dagster</li>
+<li>...</li>
+</ul>
+</div>
+<h2 id="whats-a-dag">What's a dag ?</h2>
+<p>DAGs are graphs that represent the dependencies and 
+relationships between tasks, where tasks are units of work that perform specific actions on data, 
+such as data extraction, transformation, or loading. DAGs in Airflow are defined using Python.</p>
+<p><img alt="airflow-dag" src="https://airflow.apache.org/docs/apache-airflow/stable/_images/subdag_before.png" /></p>
+<h2 id="why-do-i-need-such-a-tool">Why do I need such a tool ?</h2>
+<p>In the data-world, and especially when you're building an analytics stack you'll perform three main types of operations
+* Extract data from sources : it can be API, Databases, files, using scraping technics etc...
+* Transform the data : you'll probably clean it, perform some aggregation, consolidate it with other sources
+* Load the data : you'll put the data in an appropriate system depending on your needs, for example in a warehouse 
+ and plug a bi tool on top of it. You will also use it to expose the data to other systems / applications (ML etc...)</p>
+<p>To orchestrate all those operations and implement the logic between them, you'll need some tool : airflow is one of them.</p>
+<p>You will meet two main architectural pattern : ETL &amp; ELT. Even if they look very similar, they are not and they have
+their own pros and cons</p>
+<h3 id="recap-data-integration-pattern">Recap : Data integration pattern</h3>
+<h4 id="etl">ETL</h4>
+<p>ETL is the more "traditional" approach, where you prepare your data before loading it to your target system.
+It means that the workflow is performed by the transformation engine.</p>
+<p><img alt="img.png" src="../assets/img_5.png" /></p>
+<h4 id="elt">ELT</h4>
+<p>ELT is the more modern approach, the main point here is that you load the data first, and process the data after.
+In this case, most the computation is done on the target system directly, which act as the transformation 
+engine. This is a common approach used when your core component is a warehouse, like snowflake of bigquery, designed
+to handle intensive computation</p>
+<p><img alt="img.png" src="../assets/img_4.png" /></p>
+<h2 id="how-does-it-work">How does it work ?!</h2>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>It's not mandatory to be able to explain how airflow works to use it, however it's a good thing to have a good 
+understanding of the tool you're using...</p>
+</div>
+<p>As a user, you will interact with 3 components : </p>
+<ul>
+<li>You will configure airflow : writing the <code>airflow.cfg</code> file</li>
+<li>You will use the UI :  for managing and monitoring workflows. It allows you to interact with Airflow, 
+such as viewing DAGs, triggering DAG runs, monitoring task statuses, and managing connections, variables etc...  </li>
+<li>You will write python DAGs</li>
+</ul>
+<p>But there are not the only required components... Here is a brief explanation of the role of each component :</p>
+<ul>
+<li>
+<p><strong>Worker</strong>: A worker is a component in the Airflow architecture that is responsible for executing tasks. 
+When a task is triggered for execution, it is assigned to a worker, which runs the task and reports the result back 
+to the scheduler. Workers can be horizontally scaled to handle a large number of tasks concurrently, 
+making them suitable for parallel processing of tasks.</p>
+</li>
+<li>
+<p><strong>Scheduler</strong> The scheduler is the core component of Airflow that manages the scheduling and execution of tasks. 
+It determines when tasks should be executed based on their dependencies, triggers, and time-based schedules defined in 
+the DAGs (directed acyclic graphs). The scheduler communicates with the metadata database to keep track of task status, 
+schedule changes, and other metadata. It also communicates with workers to assign tasks for execution and monitor their 
+progress.</p>
+</li>
+</ul>
+<p><img alt="airflow-architecture" src="https://airflow.apache.org/docs/apache-airflow/2.0.1/_images/arch-diag-basic.png" /></p>
+<blockquote>
+<p>Metadata Database: Airflow uses a SQL database to store metadata about the data pipelines being run.
+In the diagram above, this is represented as Postgres which is extremely popular with Airflow.</p>
+<p>Extract from airflow documentation</p>
+</blockquote>
+<h2 id="how-to-deploy-airflow">How to deploy airflow ?</h2>
+<p>There are several way to deploy airflow, the choice will highly depends on your requirements !</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Be careful, some deployments are not suitable for production</p>
+</div>
+<h3 id="deploy-airflow-locally">Deploy airflow locally</h3>
+<p>Here the link to the airflow <a href="https://airflow.apache.org/docs/apache-airflow/stable/start.html">documentation</a> explaining
+how to easily deploy it on your local machine.</p>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p>You will probably use it for development !</p>
+</div>
+<h3 id="using-a-cloud-managed-service">Using a cloud managed service</h3>
+<p>Depending on the provider you're working on, you'll use different service with their specificities.
+One of the biggest difference will be the way of providing your dag to the service.</p>
+<h4 id="on-aws">On AWS</h4>
+<p>Aws has developed a service called MWAA built on top of airflow, it allows you to not taking care of the management 
+of the underlying infrastructure... which can be great when you don't have the resources / knowledges !</p>
+<p>The only major difference for a developer is the way of providing your dags, with MWAA you'll need to push them to S3 </p>
+<p><img alt="MWAA" src="https://d1.awsstatic.com/Product-Page-Diagram_Amazon-Managed-Workflows-for-Apache-Airflow%402x.e46cabe5fe8d937a58603056574271c6cadadd4a.png" /></p>
+<blockquote>
+<p>Extract from aws documentation</p>
+</blockquote>
+<h4 id="on-gcp">On GCP</h4>
+<p>Google has developed Cloud composer, also built on top of airflow.</p>
+<h3 id="deploy-airflow-on-kubernetes-on-premise-or-in-a-cloud-environment">Deploy airflow on kubernetes (on-premise or in a cloud environment)</h3>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p>You can manage a kubernetes cluster ... or use the managed service of your cloud provider.</p>
+</div>
+<p>Airflow can be deployed on Kubernetes, a popular container orchestration platform, which provides advanced capabilities
+for managing containerized applications at scale. Deploying Airflow on Kubernetes allows for dynamic scaling, 
+rolling updates, and self-healing of Airflow components, making it suitable for large-scale and production-grade 
+workflows.</p>
+<h2 id="how-to-create-a-dag">How to create a dag</h2>
+<p>As previously mentioned, a dag can be written in python... and it's simple !</p>
+<h3 id="airflow-operators">Airflow operators</h3>
+<p>We've seen that a dag is an association of tasks, with dependencies, but what is a task ?
+A task can be the execution of a python function, some shell commands, an SQL request etc...</p>
+<p>The great thing here is that airflow come with some pre-built <code>Operators</code> that you can use in your tasks.</p>
+<ul>
+<li><code>BashOperator</code> - executes a bash command</li>
+<li><code>PythonOperator</code> - calls a Python function</li>
+<li><code>PostgresOperator</code> - To execute an SQL request on a postgres database</li>
+<li><code>MySqlOperator</code> - To execute an SQL request on a mysql database</li>
+<li>... A lot of operator exists, and allows you to interact with external system easily</li>
+</ul>
+<p><br></p>
+<h4 id="example-a-first-minimal-dag">Example - A first minimal dag</h4>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="kn">from</span> <span class="nn">airflow</span> <span class="kn">import</span> <span class="n">DAG</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="kn">from</span> <span class="nn">airflow.operators.python</span> <span class="kn">import</span> <span class="n">PythonOperator</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="k">def</span> <span class="nf">print_hello_world</span><span class="p">():</span>
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>    <span class="k">return</span> <span class="s1">&#39;Hello world !&#39;</span>
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>
+</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="k">with</span> <span class="n">DAG</span><span class="p">(</span><span class="s1">&#39;hello_world&#39;</span><span class="p">,</span>
+</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>         <span class="n">description</span><span class="o">=</span><span class="s1">&#39;Hello world dag&#39;</span><span class="p">,</span>
+</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>         <span class="n">schedule_interval</span><span class="o">=</span><span class="s1">&#39;0 1 * * *&#39;</span><span class="p">,</span>
+</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>         <span class="n">start_date</span><span class="o">=</span><span class="n">datetime</span><span class="p">(</span><span class="mi">2023</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+</span><span id="__span-0-15"><a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>         <span class="p">)</span> <span class="k">as</span> <span class="n">dag</span><span class="p">:</span>
+</span><span id="__span-0-16"><a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a>    <span class="n">print_hello_operator</span> <span class="o">=</span> <span class="n">PythonOperator</span><span class="p">(</span><span class="n">task_id</span><span class="o">=</span><span class="s1">&#39;hello_task&#39;</span><span class="p">,</span> <span class="n">python_callable</span><span class="o">=</span><span class="n">print_hello_world</span><span class="p">,</span> <span class="n">dag</span><span class="o">=</span><span class="n">dag</span><span class="p">)</span>
+</span><span id="__span-0-17"><a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a>
+</span><span id="__span-0-18"><a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a>    <span class="n">print_hello_operator</span>
+</span></code></pre></div>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p>We can now visualize our dag on the airflow UI. By default, any dag is not activated, we need to switch the left 
+toggle to activate it, and allow the scheduler to trigger it.</p>
+</div>
+<p><img alt="img.png" src="../assets/img.png" /></p>
+<p>We've defined, a dag containing a single task, it's not really useful in the real world.
+Let's create an other examples with multiple tasks.</p>
+<h2 id="example">Example</h2>
+<p>Assuming we want to create a daily job that move some files from one source directory to a target directory : </p>
+<ul>
+<li>Let's define a function that list the files in the source</li>
+<li>Implement another function that task as parameter the files from task1 and move the files from the source
+to the destination</li>
+</ul>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="kn">import</span> <span class="nn">os</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="kn">import</span> <span class="nn">shutil</span>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span>
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="kn">from</span> <span class="nn">airflow</span> <span class="kn">import</span> <span class="n">DAG</span>
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="kn">from</span> <span class="nn">airflow.operators.python</span> <span class="kn">import</span> <span class="n">PythonOperator</span>
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>
+</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>
+</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a><span class="k">def</span> <span class="nf">get_files_in_directory</span><span class="p">(</span><span class="n">directory_path</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
+</span><span id="__span-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a>    <span class="k">return</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">directory_path</span><span class="p">)</span>
+</span><span id="__span-1-11"><a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a>
+</span><span id="__span-1-12"><a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a>
+</span><span id="__span-1-13"><a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a><span class="k">def</span> <span class="nf">move_files</span><span class="p">(</span><span class="n">files_name</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span> <span class="n">source_directory</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">target_directory</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+</span><span id="__span-1-14"><a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a>    <span class="k">for</span> <span class="n">file_name</span> <span class="ow">in</span> <span class="n">files_name</span><span class="p">:</span>
+</span><span id="__span-1-15"><a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a>        <span class="c1"># Construct source and target file paths</span>
+</span><span id="__span-1-16"><a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a>        <span class="n">source_file</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">source_directory</span><span class="p">,</span> <span class="n">file_name</span><span class="p">)</span>
+</span><span id="__span-1-17"><a id="__codelineno-1-17" name="__codelineno-1-17" href="#__codelineno-1-17"></a>        <span class="n">target_file</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">target_directory</span><span class="p">,</span> <span class="n">file_name</span><span class="p">)</span>
+</span><span id="__span-1-18"><a id="__codelineno-1-18" name="__codelineno-1-18" href="#__codelineno-1-18"></a>
+</span><span id="__span-1-19"><a id="__codelineno-1-19" name="__codelineno-1-19" href="#__codelineno-1-19"></a>        <span class="c1"># Move the file from source to target</span>
+</span><span id="__span-1-20"><a id="__codelineno-1-20" name="__codelineno-1-20" href="#__codelineno-1-20"></a>        <span class="n">shutil</span><span class="o">.</span><span class="n">move</span><span class="p">(</span><span class="n">source_file</span><span class="p">,</span> <span class="n">target_file</span><span class="p">)</span>
+</span><span id="__span-1-21"><a id="__codelineno-1-21" name="__codelineno-1-21" href="#__codelineno-1-21"></a>
+</span><span id="__span-1-22"><a id="__codelineno-1-22" name="__codelineno-1-22" href="#__codelineno-1-22"></a>
+</span><span id="__span-1-23"><a id="__codelineno-1-23" name="__codelineno-1-23" href="#__codelineno-1-23"></a><span class="k">with</span> <span class="n">DAG</span><span class="p">(</span><span class="s1">&#39;move_file_dag&#39;</span><span class="p">,</span> <span class="n">schedule_interval</span><span class="o">=</span><span class="s1">&#39;0 1 * * *&#39;</span><span class="p">,</span> <span class="n">start_date</span><span class="o">=</span><span class="n">datetime</span><span class="p">(</span><span class="mi">2023</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">13</span><span class="p">))</span> <span class="k">as</span> <span class="n">dag</span><span class="p">:</span>
+</span><span id="__span-1-24"><a id="__codelineno-1-24" name="__codelineno-1-24" href="#__codelineno-1-24"></a>    <span class="n">get_files_task</span> <span class="o">=</span> <span class="n">PythonOperator</span><span class="p">(</span>
+</span><span id="__span-1-25"><a id="__codelineno-1-25" name="__codelineno-1-25" href="#__codelineno-1-25"></a>        <span class="n">task_id</span><span class="o">=</span><span class="s1">&#39;get_files_task&#39;</span><span class="p">,</span>
+</span><span id="__span-1-26"><a id="__codelineno-1-26" name="__codelineno-1-26" href="#__codelineno-1-26"></a>        <span class="n">op_args</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;./sources&quot;</span><span class="p">],</span>
+</span><span id="__span-1-27"><a id="__codelineno-1-27" name="__codelineno-1-27" href="#__codelineno-1-27"></a>        <span class="n">python_callable</span><span class="o">=</span><span class="n">get_files_in_directory</span><span class="p">,</span>
+</span><span id="__span-1-28"><a id="__codelineno-1-28" name="__codelineno-1-28" href="#__codelineno-1-28"></a>        <span class="n">dag</span><span class="o">=</span><span class="n">dag</span>
+</span><span id="__span-1-29"><a id="__codelineno-1-29" name="__codelineno-1-29" href="#__codelineno-1-29"></a>    <span class="p">)</span>
+</span><span id="__span-1-30"><a id="__codelineno-1-30" name="__codelineno-1-30" href="#__codelineno-1-30"></a>
+</span><span id="__span-1-31"><a id="__codelineno-1-31" name="__codelineno-1-31" href="#__codelineno-1-31"></a>    <span class="n">move_files_task</span> <span class="o">=</span> <span class="n">PythonOperator</span><span class="p">(</span>
+</span><span id="__span-1-32"><a id="__codelineno-1-32" name="__codelineno-1-32" href="#__codelineno-1-32"></a>        <span class="n">task_id</span><span class="o">=</span><span class="s1">&#39;move_files_task&#39;</span><span class="p">,</span>
+</span><span id="__span-1-33"><a id="__codelineno-1-33" name="__codelineno-1-33" href="#__codelineno-1-33"></a>        <span class="n">python_callable</span><span class="o">=</span><span class="n">move_files</span><span class="p">,</span>
+</span><span id="__span-1-34"><a id="__codelineno-1-34" name="__codelineno-1-34" href="#__codelineno-1-34"></a>        <span class="n">op_args</span><span class="o">=</span><span class="p">[</span><span class="n">get_files_task</span><span class="o">.</span><span class="n">output</span><span class="p">,</span> <span class="s2">&quot;./sources&quot;</span><span class="p">,</span> <span class="s2">&quot;./destination&quot;</span><span class="p">],</span>  <span class="c1"># Pass output of get_files_task as argument</span>
+</span><span id="__span-1-35"><a id="__codelineno-1-35" name="__codelineno-1-35" href="#__codelineno-1-35"></a>        <span class="n">dag</span><span class="o">=</span><span class="n">dag</span>
+</span><span id="__span-1-36"><a id="__codelineno-1-36" name="__codelineno-1-36" href="#__codelineno-1-36"></a>    <span class="p">)</span>
+</span><span id="__span-1-37"><a id="__codelineno-1-37" name="__codelineno-1-37" href="#__codelineno-1-37"></a>
+</span><span id="__span-1-38"><a id="__codelineno-1-38" name="__codelineno-1-38" href="#__codelineno-1-38"></a>    <span class="n">get_files_task</span> <span class="o">&gt;&gt;</span> <span class="n">move_files_task</span>
+</span></code></pre></div>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p>As you can see, to define the relationship between the two task, we use <code>&gt;&gt;</code> operator, you can also wrap multiple
+tasks between square brackets to be dependent on the same upstream task. For example : 
+<code>first_task &gt;&gt; second_task &gt;&gt; [third_task, fourth_task]</code></p>
+</div>
+<h3 id="successful-dag-execution">Successful dag execution</h3>
+<p>In case of success, you should have all your tasks in green :</p>
+<p><img alt="fail_dag" src="../assets/img_2.png" /></p>
+<h3 id="failing-dag-execution">Failing dag execution</h3>
+<p>If the first task <code>get_files_task</code> fails, the second task <code>move_files_task</code> will not be executed (with the default config) 
+Here a visual example of this case : </p>
+<p><img alt="fail_dag" src="../assets/img_1.png" /></p>
+<h2 id="some-interesting-features">Some interesting features</h2>
+<p>We've seen some very basic features of airflow, it has a lot of other features, that can help you to
+build some more complex pipeline.</p>
+<h3 id="callback">Callback</h3>
+<p>A <code>Callback</code> is a function that is only invoked when the task state changes due to execution by a worker.
+For example, when a task fails. </p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>One good example of callback use is to send some alert when a task fail, it's
+very common to trigger an alert sent by slack or by email to inform that a task has fail.</p>
+</div>
+<p>There are fours type of callback : </p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>on_success_callback</td>
+<td>Invoked when the task succeeds</td>
+</tr>
+<tr>
+<td>on_failure_callback</td>
+<td>Invoked when the task fails</td>
+</tr>
+<tr>
+<td>sla_miss_callback</td>
+<td>Invoked when a task misses its defined SLA</td>
+</tr>
+<tr>
+<td>on_retry_callback</td>
+<td>Invoked when the task is up for retry</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>From airflow documentation</p>
+</blockquote>
+<h3 id="connections">Connections</h3>
+<p>Connections are used for storing credentials that are used to connect to external systems such as databases.</p>
+<p>A Connection is essentially set of parameters - such as username, password and hostname - 
+along with the type of system that it connects to, and a unique name, called the conn_id.</p>
+<p>They can be managed via the UI or via the CLI.</p>
+<p>Via the UI, you'll need to go to <code>Admin&gt;&gt;Connections</code> and will have the following page:</p>
+<p><img alt="airflow_connections" src="../assets/img_3.png" /></p>
+<p>You'll need to install some additional dependencies to use some pre-built connections. For postgresql, you need to 
+install the package : <code>pip install apache-airflow-providers-postgres</code> </p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>After installing a dependency, you'll need to restart your airflow instance</p>
+</div>
+<h3 id="hooks">Hooks</h3>
+<p>A hook is an interface that allow you to easily communicate with an external system (database for example),
+they use the connections to connect to those system. As they encapsulate the details of connecting to and interacting 
+with external systems, it helps you to perform some operations with a minimal amount of code.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>If you need to interact with a Postgres database, have a look to the <code>PostgresHook</code></p>
+</div>
+<h2 id="cron-format-reminder">Cron format reminder</h2>
+<p>If you have any doubt on your schedule format, check it on <a href="https://crontab.guru/">cron-guru</a></p>
+<div class="admonition info">
+<p class="admonition-title">Cron format</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>* * * * *
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>- - - - -
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>| | | | |
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>| | | | ----- Day of week (0 - 7) (Sunday is both 0 and 7)
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>| | | ------- Month (1 - 12)
+</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>| | --------- Day of month (1 - 31)
+</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>| ----------- Hour (0 - 23)
+</span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>------------- Minute (0 - 59)
+</span></code></pre></div>
+</div>
+<h3 id="example_1">Example</h3>
+<ul>
+<li>To run a command every day at 3:30 AM: <code>30 3 * * *</code></li>
+<li>To run a command every week on Sunday at 8:00 PM: <code>0 20 * * 0</code></li>
+<li>To run a command every month on the 15th at 1:45 PM: <code>45 13 15 * *</code></li>
+</ul>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    <script id="__config" type="application/json">{"base": "..", "features": ["content.code.copy"], "search": "../assets/javascripts/workers/search.208ed371.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.efa0ade1.min.js"></script>
+      
+    
+  </body>
+</html>
