@@ -72,26 +72,4 @@ Data science tools are software applications, libraries, and frameworks that are
 
 
 ## Session 3
-This session will be oriented around basic data visualization libraries & framework.
-
-``` mermaid
-    %%{init: { 'logLevel': 'debug', 'theme': 'base', 'gitGraph': {'showBranches': true, 'showCommitLabel':true,'mainBranchName': 'session3'}} }%%
-
-    gitGraph
-       commit id: "Data viz libraries"
-       branch libraries
-       checkout libraries
-       commit id: "matplotlib"
-       commit id: "seaborn"
-       checkout session3
-       merge libraries
-       commit id: "Data viz framework"
-       branch framework
-       checkout framework
-       commit id: "plotly dash"
-       checkout session3
-       merge framework
-       
- 
-       
-```
+This session will be oriented around airflow.
