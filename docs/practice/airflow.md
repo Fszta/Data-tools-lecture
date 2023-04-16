@@ -80,11 +80,12 @@ information :
     
 
 #### 3 - Store the data
-    !!! warning
+
+!!! warning
 
     Before developing the task, you'll need to create a connection to your postgres database
 
-Create a task that takes the previously transform data an insert in a table called `velib_station_status`.
+Create a task that takes the previously transformed data an insert in a table called `velib_station_status`.
 You can manage the table creation from your dag (using `CREATE TABLE IF NOT EXISTS`, (before the insert statement),
 or do it using the pg cli.
 
