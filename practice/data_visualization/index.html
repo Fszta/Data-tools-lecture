@@ -9,17 +9,17 @@
       
       
       
-        <link rel="prev" href="../../python_package_management/">
+        <link rel="prev" href="../airflow/">
       
       
-        <link rel="next" href="../data_visualization/">
+        <link rel="next" href="../docker/">
       
       <link rel="icon" href="../../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-9.1.3">
     
     
       
-        <title>Airflow in practice - Introduction to data science tools</title>
+        <title>Data visualization with Plotly Dash - Introduction to data science tools</title>
       
     
     
@@ -71,7 +71,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#airflow-in-practice" class="md-skip">
+        <a href="#data-visualization-with-plotly-dash" class="md-skip">
           Skip to content
         </a>
       
@@ -106,7 +106,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Airflow in practice
+              Data visualization with Plotly Dash
             
           </span>
         </div>
@@ -329,6 +329,20 @@
               
   
   
+  
+    <li class="md-nav__item">
+      <a href="../airflow/" class="md-nav__link">
+        Airflow in practice
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
     
   
   
@@ -341,12 +355,12 @@
       
       
         <label class="md-nav__link md-nav__link--active" for="__toc">
-          Airflow in practice
+          Data visualization with Plotly Dash
           <span class="md-nav__icon md-icon"></span>
         </label>
       
       <a href="./" class="md-nav__link md-nav__link--active">
-        Airflow in practice
+        Data visualization with Plotly Dash
       </a>
       
         
@@ -365,23 +379,38 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#installation" class="md-nav__link">
-    Installation
+  <a href="#tp" class="md-nav__link">
+    TP
   </a>
   
-    <nav class="md-nav" aria-label="Installation">
+    <nav class="md-nav" aria-label="TP">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#create-an-admin-user-to-connect-to-the-ui" class="md-nav__link">
-    Create an admin user to connect to the ui
+  <a href="#how-to-submit-your-work" class="md-nav__link">
+    How to submit your work
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#set-dags-folder" class="md-nav__link">
-    Set dags folder
+  <a href="#input-data" class="md-nav__link">
+    Input data
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1-create-some-graph-for-ratp-dataset" class="md-nav__link">
+    1 - Create some graph for RATP dataset
+  </a>
+  
+    <nav class="md-nav" aria-label="1 - Create some graph for RATP dataset">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#objective" class="md-nav__link">
+    Objective
   </a>
   
 </li>
@@ -390,81 +419,91 @@
     </nav>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#test-to-access-the-ui" class="md-nav__link">
-    Test to access the UI
+        
+          <li class="md-nav__item">
+  <a href="#2-create-some-graph-for-idf-dataset" class="md-nav__link">
+    2 - Create some graph for IDF dataset
   </a>
   
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#exercice" class="md-nav__link">
-    Exercice
-  </a>
-  
-    <nav class="md-nav" aria-label="Exercice">
+    <nav class="md-nav" aria-label="2 - Create some graph for IDF dataset">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#your-first-dag" class="md-nav__link">
-    Your first dag
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#a-real-dag" class="md-nav__link">
-    A real dag
-  </a>
-  
-    <nav class="md-nav" aria-label="A real dag">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#1-data-acquisition-task" class="md-nav__link">
-    1 - Data acquisition task
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#2-transform-the-data" class="md-nav__link">
-    2 - Transform the data
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#3-store-the-data" class="md-nav__link">
-    3 - Store the data
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#4-aggregate-the-data" class="md-nav__link">
-    4 - Aggregate the data
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#5-plug-metabase-on-your-database" class="md-nav__link">
-    5 - Plug metabase on your database
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#bonus" class="md-nav__link">
-    Bonus
+  <a href="#objective_1" class="md-nav__link">
+    Objective
   </a>
   
 </li>
         
       </ul>
     </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-add-some-global-filters" class="md-nav__link">
+    3 - Add some global filters
+  </a>
+  
+    <nav class="md-nav" aria-label="3 - Add some global filters">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#objective_2" class="md-nav__link">
+    Objective
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-create-an-interactive-map" class="md-nav__link">
+    4 - Create an interactive map
+  </a>
+  
+    <nav class="md-nav" aria-label="4 - Create an interactive map">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#objective_3" class="md-nav__link">
+    Objective
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-containerize-your-plotly-dash-application" class="md-nav__link">
+    5 - Containerize your plotly dash application
+  </a>
+  
+    <nav class="md-nav" aria-label="5 - Containerize your plotly dash application">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#objective_4" class="md-nav__link">
+    Objective
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bonus-add-some-style-to-your-dashboard" class="md-nav__link">
+    Bonus - Add some style to your dashboard
+  </a>
   
 </li>
         
@@ -477,20 +516,6 @@
   
 </nav>
       
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../data_visualization/" class="md-nav__link">
-        Data visualization with Plotly Dash
-      </a>
     </li>
   
 
@@ -543,23 +568,38 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#installation" class="md-nav__link">
-    Installation
+  <a href="#tp" class="md-nav__link">
+    TP
   </a>
   
-    <nav class="md-nav" aria-label="Installation">
+    <nav class="md-nav" aria-label="TP">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#create-an-admin-user-to-connect-to-the-ui" class="md-nav__link">
-    Create an admin user to connect to the ui
+  <a href="#how-to-submit-your-work" class="md-nav__link">
+    How to submit your work
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#set-dags-folder" class="md-nav__link">
-    Set dags folder
+  <a href="#input-data" class="md-nav__link">
+    Input data
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1-create-some-graph-for-ratp-dataset" class="md-nav__link">
+    1 - Create some graph for RATP dataset
+  </a>
+  
+    <nav class="md-nav" aria-label="1 - Create some graph for RATP dataset">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#objective" class="md-nav__link">
+    Objective
   </a>
   
 </li>
@@ -568,81 +608,91 @@
     </nav>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#test-to-access-the-ui" class="md-nav__link">
-    Test to access the UI
+        
+          <li class="md-nav__item">
+  <a href="#2-create-some-graph-for-idf-dataset" class="md-nav__link">
+    2 - Create some graph for IDF dataset
   </a>
   
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#exercice" class="md-nav__link">
-    Exercice
-  </a>
-  
-    <nav class="md-nav" aria-label="Exercice">
+    <nav class="md-nav" aria-label="2 - Create some graph for IDF dataset">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#your-first-dag" class="md-nav__link">
-    Your first dag
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#a-real-dag" class="md-nav__link">
-    A real dag
-  </a>
-  
-    <nav class="md-nav" aria-label="A real dag">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#1-data-acquisition-task" class="md-nav__link">
-    1 - Data acquisition task
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#2-transform-the-data" class="md-nav__link">
-    2 - Transform the data
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#3-store-the-data" class="md-nav__link">
-    3 - Store the data
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#4-aggregate-the-data" class="md-nav__link">
-    4 - Aggregate the data
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#5-plug-metabase-on-your-database" class="md-nav__link">
-    5 - Plug metabase on your database
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#bonus" class="md-nav__link">
-    Bonus
+  <a href="#objective_1" class="md-nav__link">
+    Objective
   </a>
   
 </li>
         
       </ul>
     </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-add-some-global-filters" class="md-nav__link">
+    3 - Add some global filters
+  </a>
+  
+    <nav class="md-nav" aria-label="3 - Add some global filters">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#objective_2" class="md-nav__link">
+    Objective
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-create-an-interactive-map" class="md-nav__link">
+    4 - Create an interactive map
+  </a>
+  
+    <nav class="md-nav" aria-label="4 - Create an interactive map">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#objective_3" class="md-nav__link">
+    Objective
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-containerize-your-plotly-dash-application" class="md-nav__link">
+    5 - Containerize your plotly dash application
+  </a>
+  
+    <nav class="md-nav" aria-label="5 - Containerize your plotly dash application">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#objective_4" class="md-nav__link">
+    Objective
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bonus-add-some-style-to-your-dashboard" class="md-nav__link">
+    Bonus - Add some style to your dashboard
+  </a>
   
 </li>
         
@@ -666,173 +716,124 @@
                   
 
 
-<h1 id="airflow-in-practice">Airflow in practice</h1>
-<h2 id="installation">Installation</h2>
-<p>We've seen many way of deploying airflow, for practice, the most straightforward way is
-to install it via pip and run it in standalone mode.</p>
-<p>Here a quick tutorial on how to install &amp; run it : <a href="https://airflow.apache.org/docs/apache-airflow/stable/start.html">airflow documentation</a></p>
-<h3 id="create-an-admin-user-to-connect-to-the-ui">Create an admin user to connect to the ui</h3>
-<p>If you not run all the commands separately, you'll probably need to create a user to connect to the UI</p>
-<div class="language-shell highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>airflow<span class="w"> </span>users<span class="w"> </span>create<span class="w"> </span><span class="se">\</span>
-</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">          </span>--username<span class="w"> </span>antoine<span class="w"> </span><span class="se">\</span>
-</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="w">          </span>--firstname<span class="w"> </span>admin<span class="w"> </span><span class="se">\</span>
-</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="w">          </span>--lastname<span class="w"> </span>admin<span class="w"> </span><span class="se">\</span>
-</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="w">          </span>--role<span class="w"> </span>Admin<span class="w"> </span><span class="se">\</span>
-</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="w">          </span>--password<span class="w"> </span>admin<span class="w"> </span><span class="se">\</span>
-</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="w">          </span>--email<span class="w"> </span>admin@example.org
-</span></code></pre></div>
-<h3 id="set-dags-folder">Set dags folder</h3>
-<div class="admonition tip">
-<p class="admonition-title">Tip</p>
-<p>This is not mandatory, but you can modify the default path of the dag folder to a more convenient place.
-This is the folder from where airflow will grab the dags you've developed</p>
-</div>
-<p>In <code>airflow.cfg</code> file, update <code>dags_folder</code> path to the folder you want on your machine.
-By default, it's set to your HOME directory.</p>
-<h2 id="test-to-access-the-ui">Test to access the UI</h2>
-<p>By default airflow run on <a href="localhost:8080">localhost:8080</a>. Normally you should have some examples dags that come with
-the installation if you haven't updated the config file.</p>
-<h2 id="exercice">Exercice</h2>
-<p>The aim of the exercise is to create a more realistic dag to retrieve some data from an API,
-perform some transformation, and store it in a database.</p>
-<p>Requirements :
-For this exercise, you'll need : </p>
+<h1 id="data-visualization-with-plotly-dash">Data visualization with Plotly Dash</h1>
+<h2 id="tp">TP</h2>
+<p>The goal of the exercise is to :</p>
 <ul>
-<li>airflow</li>
-<li>a database : postgres (feel free to try another)</li>
-<li>metabase</li>
+<li>Create a web-based dashboard using plotly dash</li>
+<li>Make it ready for distribution with docker</li>
+<li>Manage the code versioning with git (in a good manner)</li>
 </ul>
-<h3 id="your-first-dag">Your first dag</h3>
-<p>Create a hello world dag that run every minute and just print <code>hello world</code>, just to ensure that all is working 
-as expected.</p>
-<h3 id="a-real-dag">A real dag</h3>
-<p>For this exercise, we will use the <a href="https://velib-metropole-opendata.smoove.pro/opendata/Velib_Metropole/station_status.json">velib API</a>,</p>
-<p>Your dag must include (at least the following task):</p>
-<ul>
-<li>A task to retrieve the data from the API</li>
-<li>A task to quickly transform the data (process the data to make it fit the target system)</li>
-<li>A task to store the result in your a table of your database</li>
-<li>A task to run some aggregation on the table previously feeded with new data.</li>
-</ul>
-<h4 id="1-data-acquisition-task">1 - Data acquisition task</h4>
-<p>Use the following endpoint : https://velib-metropole-opendata.smoove.pro/opendata/Velib_Metropole/station_status.json
-to extract the last updated data from the velib api.</p>
-<h4 id="2-transform-the-data">2 - Transform the data</h4>
-<p>In this task, you need the json data to be in a flattened format. For each station we want to have the following 
-information : </p>
-<ul>
-<li>station_id</li>
-<li>number_of_available_docks</li>
-<li>number_of_electric_bike</li>
-<li>number_of_mechanical_bike</li>
-<li>the timestamp at which data has been updated on the server side</li>
-</ul>
-<div class="admonition tip">
-<p class="admonition-title">Tip</p>
-<p>You can use the method of your choice, you can do it using pure python, or using some libraries</p>
-</div>
-<h4 id="3-store-the-data">3 - Store the data</h4>
 <div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>Before developing the task, you'll need to create a connection to your postgres database</p>
-</div>
-<p>Create a task that takes the previously transformed data an insert in a table called <code>velib_station_status</code>.
-You can manage the table creation from your dag (using <code>CREATE TABLE IF NOT EXISTS</code>, (before the insert statement),
-or do it using the pg cli.</p>
-<p>Here is the expected schema of the table : </p>
-<table>
-<thead>
-<tr>
-<th>Column Name</th>
-<th>Description</th>
-<th>Type</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>id</td>
-<td>ID of the record - primary key</td>
-<td>INT</td>
-</tr>
-<tr>
-<td>station_id</td>
-<td>ID of the station</td>
-<td>INT</td>
-</tr>
-<tr>
-<td>number_of_available_docks</td>
-<td>Number of available docks at the station</td>
-<td>INT</td>
-</tr>
-<tr>
-<td>number_of_electric_bike</td>
-<td>Number of available electric bikes at the station</td>
-<td>INT</td>
-</tr>
-<tr>
-<td>number_of_mechanical_bike</td>
-<td>Number of available mechanical bikes at the station</td>
-<td>INT</td>
-</tr>
-<tr>
-<td>timestamp_data_updated_on_server</td>
-<td>Timestamp at which data has been updated on the server side</td>
-<td>TIMESTAMP</td>
-</tr>
-</tbody>
-</table>
-<p>Here is an example form the <a href="https://airflow.apache.org/docs/apache-airflow-providers-postgres/stable/operators/postgres_operator_howto_guide.html">airflow documentation</a></p>
-<h4 id="4-aggregate-the-data">4 - Aggregate the data</h4>
-<p>Create a last task which execute a postgres request to count : </p>
+<p class="admonition-title">Grading system</p>
+<p>Your grade will depends on : </p>
 <ul>
-<li>the total number of free docks</li>
-<li>the total number of available mechanical bike</li>
-<li>the total number of available electric bike</li>
+<li>The number of steps you've realized. </li>
+<li>The quality of your code.</li>
+<li>How you've used git to version your code.</li>
+<li>Your ability to use work with data to find some great insights. </li>
+<li>Any additional stuff you've implemented to make your dashboard better (style, layout, filtering).</li>
 </ul>
-<p>The result must be store in another table : <code>stations_aggregates</code> with the following columns : 
-Here is the expected schema of the table :</p>
-<table>
-<thead>
-<tr>
-<th>Column Name</th>
-<th>Description</th>
-<th>Type</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>id</td>
-<td>ID of the record - Primary key</td>
-<td>INT</td>
-</tr>
-<tr>
-<td>number_free_docks</td>
-<td>Number of free docks at the station</td>
-<td>INT</td>
-</tr>
-<tr>
-<td>number_available_e_bikes</td>
-<td>Number of available electric bikes at the station</td>
-<td>INT</td>
-</tr>
-<tr>
-<td>number_available_mechanical_bikes</td>
-<td>Number of available mechanical bikes at the station</td>
-<td>INT</td>
-</tr>
-<tr>
-<td>created_at</td>
-<td>Timestamp of the computation</td>
-<td>TIMESTAMP</td>
-</tr>
-</tbody>
-</table>
+</div>
+<p>In order to practice git, I advise you to follow a basic <code>feature-branch</code> workflow :</p>
+<ul>
+<li>Don't code directly on your main branch</li>
+<li>Create a branch foreach step of the exercise (there are 6 step), merge it into the main and start the next step.</li>
+</ul>
+<h3 id="how-to-submit-your-work">How to submit your work</h3>
+<div class="admonition danger">
+<p class="admonition-title">Danger</p>
+<p>You have to submit it before 2023-04-23 23:59</p>
+</div>
+<p>Your work will be submitted as a Github repository (if you choose to make it private, you have to share it with me).</p>
+<p>It should have a similar structure to : </p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>your_project/
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>├─ app.py
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>├─ requirements.txt
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>└─ Dockerfile
+</span></code></pre></div>
+<p>Feel free to add a README.md file to describe your project, explain how to build the docker image, how to run the 
+container etc...</p>
+<h3 id="input-data">Input data</h3>
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>
+<p>Have a look to the data before to deep dive in the exercise</p>
 </div>
-<h4 id="5-plug-metabase-on-your-database">5 - Plug metabase on your database</h4>
-<h4 id="bonus">Bonus</h4>
-<p>Create a slack integration and add an on_failure callback to send an alert when your dag fail</p>
+<p>For this exercise, you'll use two input dataset (in csv format), you can download them as follows:</p>
+<ul>
+<li>
+<p>One from <a href="https://data.ratp.fr/explore/dataset/trafic-annuel-entrant-par-station-du-reseau-ferre-2021/export/">ratp</a>
+This dataset represents all the stations managed by RATP in "Ile de France" (with each transport mode : subway, train etc...) and 
+their number of travelers for the year 2021. You also have the city they belong to, and the district.</p>
+</li>
+<li>
+<p><img alt="download-ratp" src="../../assets/img_7.png" /></p>
+</li>
+<li>
+<p>One from <a href="https://data.iledefrance-mobilites.fr/explore/dataset/emplacement-des-gares-idf/export/">ile-de-france-mobilités</a>
+<img alt="download-idf" src="../../assets/img_8.png" />
+This dataset contains all the positions of the stations, this time not only for RATP, but also SNCF etc...</p>
+</li>
+</ul>
+<h3 id="1-create-some-graph-for-ratp-dataset">1 - Create some graph for RATP dataset</h3>
+<p>For this question, you need to use the first dataset (the one from RATP). </p>
+<h4 id="objective">Objective</h4>
+<ul>
+<li>Create a bar chart that represents the <code>TOP 10</code> stations with the biggest traffic </li>
+<li>Create a Pie chart that represents trafic per cities (to make it clear, you can take only the TOP 5)</li>
+<li>Organize those two chart on the same row (they have to be side by side)</li>
+</ul>
+<h3 id="2-create-some-graph-for-idf-dataset">2 - Create some graph for IDF dataset</h3>
+<p>For this question, you need to use the first dataset (the one from IDF).</p>
+<h4 id="objective_1">Objective</h4>
+<ul>
+<li>Create a bar chart that represents the number of stations per <code>exploitant</code></li>
+<li>Create a chart that represents the number of stations per <code>ligne</code></li>
+</ul>
+<h3 id="3-add-some-global-filters">3 - Add some global filters</h3>
+<p>Add some global filter to your dashboard, use some dropdown selection filter.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Feel free to add any filter, it will help you being more familiar with the concept of <code>callback</code></p>
+</div>
+<h4 id="objective_2">Objective</h4>
+<ul>
+<li>One filter for <code>réseau</code> (field from the RATP dataset)</li>
+<li>One filter for <code>exploitant</code> (field from the IDF dataset)</li>
+<li></li>
+</ul>
+<h3 id="4-create-an-interactive-map">4 - Create an interactive map</h3>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p>For this step, you need to user the second dataset which represents all the subway station in paris, with some 
+geographical informations</p>
+</div>
+<p>In the second dataset, you have many ways to retrieve latitude and longitude, however, you don't have explicit columns
+<code>lat</code> &amp; <code>lon</code> (or anything similar). One way to to it is to split the <code>geo_point</code> column :</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="n">df</span><span class="p">[[</span><span class="s1">&#39;lat&#39;</span><span class="p">,</span> <span class="s1">&#39;lng&#39;</span><span class="p">]]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;geo_point&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;,&#39;</span><span class="p">,</span> <span class="n">expand</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="n">df</span><span class="p">[</span><span class="s1">&#39;lat&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;lat&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">float</span><span class="p">)</span>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="n">df</span><span class="p">[</span><span class="s1">&#39;lng&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;lng&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">float</span><span class="p">)</span>
+</span></code></pre></div>
+<h4 id="objective_3">Objective</h4>
+<p>Add a Map to your dashboard to visualize the position of the stations.</p>
+<h3 id="5-containerize-your-plotly-dash-application">5 - Containerize your plotly dash application</h3>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Have a look to the docker section, there is an example with a flask application, it's different but the
+logic is very similar</p>
+</div>
+<h4 id="objective_4">Objective</h4>
+<ul>
+<li>Create a <code>Dockerfile</code> in which you define how the docker image must be build in order to run
+your application</li>
+<li>Build your docker image : <code>docker build -t your_image .</code></li>
+<li>Run a container : be careful you need to expose port <code>8050</code> which is the port used by plotly dash</li>
+</ul>
+<p>In order to make you application accessible from outside the container, you need to set the host to <code>0.0.0.0</code>,
+you can do it by update the run server : 
+<div class="language-python highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="n">app</span><span class="o">.</span><span class="n">run_server</span><span class="p">(</span><span class="n">host</span><span class="o">=</span><span class="s1">&#39;0.0.0.0&#39;</span><span class="p">,</span> <span class="n">port</span><span class="o">=</span><span class="mi">8050</span><span class="p">,</span> <span class="n">debug</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</span></code></pre></div></p>
+<h3 id="bonus-add-some-style-to-your-dashboard">Bonus - Add some style to your dashboard</h3>
 
 
 

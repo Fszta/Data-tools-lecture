@@ -9,7 +9,7 @@
       
       
       
-        <link rel="prev" href="../airflow/">
+        <link rel="prev" href="../data-visualization/">
       
       
         <link rel="next" href="../git/">
@@ -240,6 +240,21 @@
 
   
   
+  
+    <li class="md-nav__item">
+      <a href="../data-visualization/" class="md-nav__link">
+        Data visualization
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
     
   
   
@@ -347,6 +362,46 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-to-build-a-docker-image-for-my-application" class="md-nav__link">
+    How to build a docker image for my application ?
+  </a>
+  
+    <nav class="md-nav" aria-label="How to build a docker image for my application ?">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#example-docker-image-for-a-flask-application" class="md-nav__link">
+    Example - Docker image for a flask application
+  </a>
+  
+    <nav class="md-nav" aria-label="Example - Docker image for a flask application">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#run-your-application" class="md-nav__link">
+    Run your application !
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#conclusion" class="md-nav__link">
+    Conclusion
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#commands-recap" class="md-nav__link">
     Commands recap
   </a>
@@ -404,17 +459,17 @@
       
       
       
-      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
       
       
       
-        <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+        <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
           Practice
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
-        <label class="md-nav__title" for="__nav_6">
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_7">
           <span class="md-nav__icon md-icon"></span>
           Practice
         </label>
@@ -428,6 +483,20 @@
     <li class="md-nav__item">
       <a href="../practice/airflow/" class="md-nav__link">
         Airflow in practice
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../practice/data_visualization/" class="md-nav__link">
+        Data visualization with Plotly Dash
       </a>
     </li>
   
@@ -554,6 +623,46 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-to-build-a-docker-image-for-my-application" class="md-nav__link">
+    How to build a docker image for my application ?
+  </a>
+  
+    <nav class="md-nav" aria-label="How to build a docker image for my application ?">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#example-docker-image-for-a-flask-application" class="md-nav__link">
+    Example - Docker image for a flask application
+  </a>
+  
+    <nav class="md-nav" aria-label="Example - Docker image for a flask application">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#run-your-application" class="md-nav__link">
+    Run your application !
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#conclusion" class="md-nav__link">
+    Conclusion
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#commands-recap" class="md-nav__link">
     Commands recap
   </a>
@@ -604,12 +713,114 @@ system and from other containers, making them a secure way to run applications.<
 <h3 id="5-docker-compose">5. Docker Compose</h3>
 <p>Docker Compose is a tool for defining and running multi-container Docker applications. With Docker Compose, you can define the services that make up your application, their configuration, and the network they should use to communicate with each other.</p>
 <h3 id="6-docker-swarm">6. Docker Swarm</h3>
+<p>Docker Swarm is a native clustering and orchestration tool for Docker. With Swarm, you can create and manage a cluster 
+of Docker nodes, and deploy and manage Docker services across the cluster.</p>
 <div class="admonition info">
 <p class="admonition-title">Info</p>
 <p>It's not very common to use it in a production environment, the standard is to use <a href="https://kubernetes.io/">kubernetes</a></p>
 </div>
-<p>Docker Swarm is a native clustering and orchestration tool for Docker. With Swarm, you can create and manage a cluster 
-of Docker nodes, and deploy and manage Docker services across the cluster.</p>
+<h2 id="how-to-build-a-docker-image-for-my-application">How to build a docker image for my application ?</h2>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>The convention is to provide the configuration in a <code>Dockerfile</code> file, however you can give choose another name 
+instead of the default one.     </p>
+</div>
+<p>To distribute your application with docker, you basically need to provide the following information and assets:</p>
+<ul>
+<li>On which environment my image must be based on ? It can be python, ubuntu. This is done using the <code>FROM</code> keyword</li>
+<li>What will be the working directory ? This is done using <code>WORKDIR</code> keyword</li>
+<li>Provide the source files (for example your python code) of the application and any needed file. This is done using 
+<code>COPY</code> keyword. It works as follows : <code>COPY &lt;src&gt; &lt;dest&gt;</code> </li>
+<li>Provide the command that must be run during the build process (for example installing python dependencies). 
+This is done using <code>RUN</code> keyword</li>
+<li>Specify the port that your container will listen on at runtime. For example, if you deploy an API listening on port
+<code>8080</code>, you need to expose this port to make it accessible from outside the container</li>
+<li>Finally, you need to specify the command to run when a container is started. This is done using <code>CMD</code> keyword and 
+has the following syntax : <code>CMD ["executable","param1","param2"]</code> </li>
+</ul>
+<p>There are many other keywords that can be used, for example <code>ENV</code> to set environment variables or <code>ARG</code> to handle input
+argument, you can find the list in <a href="(https://docs.docker.com/engine/reference/builder/)">docker documentation</a></p>
+<h3 id="example-docker-image-for-a-flask-application">Example - Docker image for a flask application</h3>
+<p>Assuming you have the following hello-world flask api, in a file <code>app.py</code> : </p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kn">from</span> <span class="nn">flask</span> <span class="kn">import</span> <span class="n">Flask</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="n">app</span> <span class="o">=</span> <span class="n">Flask</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="nd">@app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">)</span>
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="k">def</span> <span class="nf">hello</span><span class="p">():</span>
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>    <span class="k">return</span> <span class="s1">&#39;Hello, World!&#39;</span>
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>
+</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>    <span class="n">app</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">host</span><span class="o">=</span><span class="s1">&#39;0.0.0.0&#39;</span><span class="p">,</span> <span class="n">port</span><span class="o">=</span><span class="mi">5000</span><span class="p">)</span>
+</span></code></pre></div>
+<p>Your <code>requirements.txt</code> contains : 
+<div class="language-text highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>Flask==2.2.3
+</span></code></pre></div></p>
+<p>Here the corresponding <code>Dockerfile</code> : </p>
+<p><div class="language-Dockerfile highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="c"># Use the official Python base image</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="k">FROM</span><span class="w"> </span><span class="s">python:3.9</span>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="c"># Set the working directory of the container</span>
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="k">WORKDIR</span><span class="w"> </span><span class="s">/app</span>
+</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>
+</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="c"># Copy the requirements file containing your dependencies list into the container</span>
+</span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a><span class="k">COPY</span><span class="w"> </span>requirements.txt<span class="w"> </span>.
+</span><span id="__span-2-9"><a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a>
+</span><span id="__span-2-10"><a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a><span class="c"># Install necessary dependencies</span>
+</span><span id="__span-2-11"><a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a><span class="k">RUN</span><span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>--no-cache-dir<span class="w"> </span>-r<span class="w"> </span>requirements.txt
+</span><span id="__span-2-12"><a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a>
+</span><span id="__span-2-13"><a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a><span class="c"># Copy the code of the app (there is only one file), can copy all current dir using `.`</span>
+</span><span id="__span-2-14"><a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a><span class="k">COPY</span><span class="w"> </span>app.py<span class="w"> </span>.
+</span><span id="__span-2-15"><a id="__codelineno-2-15" name="__codelineno-2-15" href="#__codelineno-2-15"></a>
+</span><span id="__span-2-16"><a id="__codelineno-2-16" name="__codelineno-2-16" href="#__codelineno-2-16"></a><span class="c"># Expose port 5000, the default port used by flask</span>
+</span><span id="__span-2-17"><a id="__codelineno-2-17" name="__codelineno-2-17" href="#__codelineno-2-17"></a><span class="k">EXPOSE</span><span class="w"> </span><span class="s">5000</span>
+</span><span id="__span-2-18"><a id="__codelineno-2-18" name="__codelineno-2-18" href="#__codelineno-2-18"></a>
+</span><span id="__span-2-19"><a id="__codelineno-2-19" name="__codelineno-2-19" href="#__codelineno-2-19"></a><span class="c"># Start the Flask app</span>
+</span><span id="__span-2-20"><a id="__codelineno-2-20" name="__codelineno-2-20" href="#__codelineno-2-20"></a><span class="k">CMD</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;python&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;app.py&quot;</span><span class="p">]</span>
+</span></code></pre></div>
+Now, you can build the docker image (the following command will work if you are in the directory containing your 
+Dockerfile) : <code>docker build -t flask-app-example .</code></p>
+<p>You should have an output like :</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>Sending<span class="w"> </span>build<span class="w"> </span>context<span class="w"> </span>to<span class="w"> </span>Docker<span class="w"> </span>daemon<span class="w">  </span><span class="m">123</span>.45kB
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>Step<span class="w"> </span><span class="m">1</span>/5<span class="w"> </span>:<span class="w"> </span>FROM<span class="w"> </span>python:3.9
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="m">3</span>.9:<span class="w"> </span>Pulling<span class="w"> </span>from<span class="w"> </span>library/python
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>...
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>Status:<span class="w"> </span>Downloaded<span class="w"> </span>newer<span class="w"> </span>image<span class="w"> </span><span class="k">for</span><span class="w"> </span>python:3.9
+</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="w"> </span>---&gt;<span class="w"> </span>1234567890ab
+</span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a>Step<span class="w"> </span><span class="m">2</span>/5<span class="w"> </span>:<span class="w"> </span>WORKDIR<span class="w"> </span>/app
+</span><span id="__span-3-8"><a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a><span class="w"> </span>---&gt;<span class="w"> </span>Running<span class="w"> </span><span class="k">in</span><span class="w"> </span>9876543210ba
+</span><span id="__span-3-9"><a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a>Removing<span class="w"> </span>intermediate<span class="w"> </span>container<span class="w"> </span>9876543210ba
+</span><span id="__span-3-10"><a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a><span class="w"> </span>---&gt;<span class="w"> </span>fedcba987654
+</span><span id="__span-3-11"><a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a>Step<span class="w"> </span><span class="m">3</span>/5<span class="w"> </span>:<span class="w"> </span>COPY<span class="w"> </span>requirements.txt<span class="w"> </span>.
+</span><span id="__span-3-12"><a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a><span class="w"> </span>---&gt;<span class="w"> </span>0123456789cd
+</span><span id="__span-3-13"><a id="__codelineno-3-13" name="__codelineno-3-13" href="#__codelineno-3-13"></a>Step<span class="w"> </span><span class="m">4</span>/5<span class="w"> </span>:<span class="w"> </span>RUN<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>--no-cache-dir<span class="w"> </span>-r<span class="w"> </span>requirements.txt
+</span><span id="__span-3-14"><a id="__codelineno-3-14" name="__codelineno-3-14" href="#__codelineno-3-14"></a>...
+</span><span id="__span-3-15"><a id="__codelineno-3-15" name="__codelineno-3-15" href="#__codelineno-3-15"></a>Successfully<span class="w"> </span>installed<span class="w"> </span>Flask-1.1.2<span class="w"> </span>...
+</span><span id="__span-3-16"><a id="__codelineno-3-16" name="__codelineno-3-16" href="#__codelineno-3-16"></a>Step<span class="w"> </span><span class="m">5</span>/5<span class="w"> </span>:<span class="w"> </span>COPY<span class="w"> </span>app.py<span class="w"> </span>.
+</span><span id="__span-3-17"><a id="__codelineno-3-17" name="__codelineno-3-17" href="#__codelineno-3-17"></a><span class="w"> </span>---&gt;<span class="w"> </span>9876543210dc
+</span><span id="__span-3-18"><a id="__codelineno-3-18" name="__codelineno-3-18" href="#__codelineno-3-18"></a>Removing<span class="w"> </span>intermediate<span class="w"> </span>container<span class="w"> </span>9876543210dc
+</span><span id="__span-3-19"><a id="__codelineno-3-19" name="__codelineno-3-19" href="#__codelineno-3-19"></a><span class="w"> </span>---&gt;<span class="w"> </span>fedcba987654
+</span><span id="__span-3-20"><a id="__codelineno-3-20" name="__codelineno-3-20" href="#__codelineno-3-20"></a>Successfully<span class="w"> </span>built<span class="w"> </span>fedcba987654
+</span><span id="__span-3-21"><a id="__codelineno-3-21" name="__codelineno-3-21" href="#__codelineno-3-21"></a>Successfully<span class="w"> </span>tagged<span class="w"> </span>flask-app-example:latest
+</span></code></pre></div>
+<p>You can list the docker images on your machine with <code>docker image ls</code>. You must be able to see the previously created image : 
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>REPOSITORY<span class="w">              </span>TAG<span class="w">       </span>IMAGE<span class="w"> </span>ID<span class="w">       </span>CREATED<span class="w">       </span>SIZE
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>flask-app-example<span class="w">       </span>latest<span class="w">    </span>fedcba987654<span class="w">   </span><span class="m">2</span><span class="w"> </span>hours<span class="w"> </span>ago<span class="w">   </span>123MB
+</span></code></pre></div></p>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p>As we've not set any tag, the default <code>latest</code> will be used, it indicates that this is the latest version.</p>
+</div>
+<h4 id="run-your-application">Run your application !</h4>
+<p>You can now run your application using <code>docker run -p 5000:5000 -d flask-app-example</code></p>
+<h4 id="conclusion">Conclusion</h4>
+<p>If you want to run your application in any cloud environment, you need to push the docker image into
+a docker registry. Each cloud provider has its own container registry service. You can do it manually from your local 
+machine using the cli of your cloud provider, however it's important to keep in mind that you will not do it
+manually in a real project. The process of build and distribution of the docker image will be done in your
+<code>CI/CD</code> pipeline.</p>
 <h2 id="commands-recap">Commands recap</h2>
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>
@@ -669,6 +880,11 @@ of Docker nodes, and deploy and manage Docker services across the cluster.</p>
 </tr>
 </tbody>
 </table>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>In this page, we only cover the basics of docker, the best way to be more confortable with docker is to practice 
+through your student projects !</p>
+</div>
 
 
 
