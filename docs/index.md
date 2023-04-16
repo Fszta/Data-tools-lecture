@@ -73,3 +73,8 @@ Data science tools are software applications, libraries, and frameworks that are
 
 ## Session 3
 This session will be oriented around airflow.
+
+
+## Session 4
+The last session will be focus on data visualization with ``plotly dash``.
+We will also apply all the notion related to git & docker we've previously seen
